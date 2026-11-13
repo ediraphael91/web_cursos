@@ -19,7 +19,7 @@ const CrearCursos: React.FC = () => {
     totalElementos,
     error,
     recargar: cargarCursos,
-  } = usePaginacion<Curso>("http://localhost:8080/cursos/listar/paginado", 7);
+  } = usePaginacion<Curso>("http://localhost:8080/cursos/listar/paginado", 5);
 
   const [showModal, setShowModal] = useState(false);
   const [cursoEditar, setCursoEditar] = useState<Curso | null>(null);

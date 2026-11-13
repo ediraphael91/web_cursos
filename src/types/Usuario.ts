@@ -7,6 +7,7 @@ export interface Usuario {
   correo: string;
   contacto: string;
   fechaCumpleano: string;
+  rol: string;
   clave: string;
   estado: boolean;  
   

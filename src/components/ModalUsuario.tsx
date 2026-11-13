@@ -19,6 +19,7 @@ const ModalUsuario: React.FC<ModalUsuarioProps> = ({ onClose, onCreated, usuario
   const [fechaCumpleano, setFechaCumpleano] = useState(
     usuario?.fechaCumpleano ? usuario.fechaCumpleano.substring(0, 10) : ""
   );
+  const [rol, setRol] = useState(usuario?.rol ?? "");
   const [clave, setClave] = useState(""); // nunca se precarga, ni en edición
   const [estado, setEstado] = useState(usuario?.estado ?? true);
 
@@ -136,7 +137,24 @@ const ModalUsuario: React.FC<ModalUsuarioProps> = ({ onClose, onCreated, usuario
               onChange={(e) => setFechaCumpleano(e.target.value)}
               className="w-full border rounded-lg px-3 py-2 border-gray-300 focus:border-emerald-700 focus:ring-1 focus:ring-emerald-700 outline-none"
             />
-          </div>
+          </div>           
+        </div>
+         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Rol</label>
+            <select
+              value={rol}
+              onChange={(e) => setRol(e.target.value)}             
+              className="w-full border rounded-lg px-3 py-2 border-gray-300 focus:border-emerald-700 focus:ring-1 focus:ring-emerald-700 outline-none" 
+              >
+                <option value="" disabled>
+                Selecciona un rol
+                </option>              
+              <option value="admin">Administrador</option>
+              <option value="usuario">Usuario</option>
+              <option value="invitado">Invitado</option>
+              </select>
+          </div>                     
         </div>
 
         {/* Clave: ancho completo, nunca precargada */}

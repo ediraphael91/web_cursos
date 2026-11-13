@@ -123,6 +123,7 @@ const ListaUsuarios: React.FC = () => {
                 <th className="px-6 py-3 text-left">Correo</th>
                 <th className="px-6 py-3 text-left">Contacto</th>
                 <th className="px-6 py-3 text-left">F. Nacimiento</th>
+                <th className="px-6 py-3 text-left">Rol</th>
                 <th className="px-6 py-3 text-left">Estado</th>
                 <th className="px-6 py-3 text-left">Acciones</th>
               </tr>
@@ -136,6 +137,7 @@ const ListaUsuarios: React.FC = () => {
                   <td className="px-6 py-4">{usuario.correo}</td>
                   <td className="px-6 py-4">{usuario.contacto}</td>
                   <td className="px-6 py-4">{formatShortDate(usuario.fechaCumpleano)}</td>
+                  <td className="px-6 py-4">{usuario.rol}</td>
                   <td className="px-6 py-4">
                     <span
                       className={`px-2 py-1 rounded-full text-xs font-semibold ${
