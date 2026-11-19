@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { type Usuario } from "../types/Usuario";
+import { useRoles } from "../hooks/useRoles";
 
 interface ModalUsuarioProps {
   onClose: () => void;
@@ -11,15 +12,15 @@ interface ModalUsuarioProps {
 const ModalUsuario: React.FC<ModalUsuarioProps> = ({ onClose, onCreated, usuario }) => {
   const esEdicion = !!usuario;
 
+  const { roles, cargando } = useRoles();
+
   const [nombre, setNombre] = useState(usuario?.nombre ?? "");
   const [apellido, setApellido] = useState(usuario?.apellido ?? "");
   const [profesion, setProfesion] = useState(usuario?.profesion ?? "");
   const [correo, setCorreo] = useState(usuario?.correo ?? "");
   const [contacto, setContacto] = useState(usuario?.contacto ?? "");
-  const [fechaCumpleano, setFechaCumpleano] = useState(
-    usuario?.fechaCumpleano ? usuario.fechaCumpleano.substring(0, 10) : ""
-  );
-  const [rol, setRol] = useState(usuario?.rol ?? "");
+  const [fechaCumpleano, setFechaCumpleano] = useState(usuario?.fechaCumpleano ? usuario.fechaCumpleano.substring(0, 10) : "" );
+  const [idRol, setIdRol] = useState<string>(usuario?.idRol ? String(usuario.idRol) : "");
   const [clave, setClave] = useState(""); // nunca se precarga, ni en edición
   const [estado, setEstado] = useState(usuario?.estado ?? true);
 
@@ -34,6 +35,7 @@ const ModalUsuario: React.FC<ModalUsuarioProps> = ({ onClose, onCreated, usuario
       contacto,
       fechaCumpleano,
       estado,
+      idRol: Number(idRol),
     };
 
     // Solo se envía la clave si el usuario escribió una nueva
@@ -143,16 +145,20 @@ const ModalUsuario: React.FC<ModalUsuarioProps> = ({ onClose, onCreated, usuario
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Rol</label>
             <select
-              value={rol}
-              onChange={(e) => setRol(e.target.value)}             
+              value={idRol}
+              onChange={(e) => setIdRol(e.target.value)}
+              required
+              disabled={cargando}             
               className="w-full border rounded-lg px-3 py-2 border-gray-300 focus:border-emerald-700 focus:ring-1 focus:ring-emerald-700 outline-none" 
               >
                 <option value="" disabled>
-                Selecciona un rol
-                </option>              
-              <option value="admin">Administrador</option>
-              <option value="usuario">Usuario</option>
-              <option value="invitado">Invitado</option>
+                  {cargando ? "Cargando roles..." : "Selecciona un rol"}
+                </option>
+                  {roles.map((r) => (
+                <option key={r.id} value={r.id}>
+                  {r.nombre}
+                </option>
+                  ))}                
               </select>
           </div>                     
         </div>
