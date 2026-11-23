@@ -16,10 +16,15 @@ const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex items-center space-x-6">
           <Link to="/" className="hover:text-yellow-300">Inicio</Link>
           <Link to="/cursos/crear" className="hover:text-yellow-300">Crear Cursos</Link>
           <Link to="/usuarios" className="hover:text-yellow-300">Crear Usuarios</Link>
+        {/* Botón de Iniciar Sesión */}
+          <Link
+            to="/login" className=" border border-white  font-medium rounded-xl px-4 py-1.5 hover:border-yellow-400 hover:text-yellow-400  transition-colors duration-300"
+            >Iniciar sesión
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -37,6 +42,10 @@ const Navbar: React.FC = () => {
           <Link to="/" className="block hover:text-yellow-300">Inicio</Link>
           <Link to="/cursos/crear" className="block hover:text-yellow-300">Crear Cursos</Link>
           <Link to="/usuarios" className="block hover:text-yellow-300">Crear Usuarios</Link>
+          <Link
+            to="/login" className="border-2 border-white  font-medium rounded-xl px-1 py-1 hover:border-yellow-400 hover:text-yellow-400  transition-colors duration-300"
+            >Iniciar sesión
+          </Link>
         </div>
       )}     
     </nav>

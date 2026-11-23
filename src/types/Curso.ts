@@ -4,11 +4,10 @@ export interface Curso {
   categoria: string;
   descripcion: string;
   estado: boolean;
-  fechaFin: string;       // puedes usar Date si lo parseas
+  fechaFin: string;
   fechaInicio: string;
   imagen: string;
   modalidad: string;
   nombre: string;
-  precio: number;
-  
+  precio: number;  
 }
